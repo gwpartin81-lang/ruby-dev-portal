@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learn Golang on 67 minutes</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-tomorrow.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-go.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <p class="green-text">HOW TO PROGRAM ON GOLANG</p>
+    <p class="green-text">1. Requirements</p>
+    <p>So... ¿What do you need to code on go?</p>
+    <ul>
+        <li>Having go installed, if you dont have it you can download it from <a href="https://go.dev/dl/">His oficcial website</a></li>
+        <li>A code editor : You can  use VSCODE, or if you feel pro, neovim. but rebember, only genius code on Notepad</li>
+        <li>A Terminal Emulator(CMD, KITTY, or whichever you like more :D)</li>
+    </ul>
+    <p class="green-text">2. Hello World!</p>
+    <p>So... how you can start coding?, its easy!,  jsut follow this steps</p>
+    <ul>
+        <li>Make a folder : use "mkdir Golang-Course"</li>
+        <li>Enter to the folder : use "cd Golang-Course"</li>
+        <li>Create a new module with the next command : "go mod init Golang-Course". Obviusly you can change the name for other projects</li>
+        <li>Verify all is good ; tipe "ls" too see files, or if you are on windows, type "dir"</li>
+    </ul>
+    <p>Now, lets start the coding!</p>
+    <p>In the Golang-Course foulder, create a new file with the name "main.go"</p>
+    <p>Now, you need to put this code</p>
+    <pre><code class="language-go">
+
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, World!")
+}
+    </code></pre>
+    <p>So... what the heck is this?. first, the package main tells go that is the main executable.</p>
+    <p>import "fmt", fmt is like a library which give us functions like Println.</p>
+    <p>To declare the main function as you can see, we use "func main()"</p>
+    <p>So. fmt.Println its calling the function "println" from the fmt package, when you call a function you need to put () at the end. Print needs a argument, which is the text to print, so inside the () we put the string we want, in our case, "Hello World"</p>
+    <p>Now, try on your terminal, "go run main.go". You should se a good output. Congratulations!</p>
+
+    
+    <p class="green-text">3. Variables</p>
+    <p>How can I declare vars?</p>
+    <p>First, you need to know the data-types, which are the next</p>
+    <ul>
+        <li>Integer Numbers : int</li>
+        <li>Floating Point Numbers : float32 & float64, flaot64 is recommended for more complex math</li>
+        <li>Booleans : True and False</li>
+    </ul>
+    <h3>GLOBAL VARS</h3>
+    <p>A global variable is a variable which can be used on all code</p>
+    <p>For example, you can use in diferent functions</p>
+    <p>Here are some examples of declaring global variables</p>
+    <pre><code class="language-go">
+// Declare an integer variable for the year
+var year int = 2025
+
+// Declare a string variable for the month
+var month string = "February"
+
+// Declare a float variable for Pi
+var pi float32 = 3.141592653
+
+// Declare a global boolean variable
+var global bool = false
+// Obviusly you can use any name you want!
+    </code></pre>
+    <p>You need to declare globals outside a function</p>
+    <h3>LOCAL VARIABLES</h3>
+    <p>For this ones, you declare it inside a function and you can only use it inside that function</p>
+    <p>For this, you dont need to specify the data type(except for things like float32/64)</p>
+    <p>Example of local variables</p>
+    <pre><code class="language-go">
+year := 2025
+month := "march"
+pi := float32(3.14)
+global := false
+    </code></pre>
+    <h3>EXAMPLES</h3>
+    <p>global</p>
+    <pre><code class="language-go">
+package main
+
+import "fmt"
+
+// Declare an integer variable for the year
+var year int = 2024
+
+// Declare a string variable for the month
+var month string = "February"
+
+func main() {
+   // Print the year and month
+    fmt.Printf("The year is %v and the month is %v\n", year, month)
+}
+    </code></pre>
+    <p>local</p>
+    <pre><code class="language-go">
+package main
+
+import "fmt"
+
+func main() {
+    year := 2024
+    month := "February"
+    fmt.Printf("The year is %v and the month is %v\n", year, month)
+}
+    </pre></code>
+
+    <p class="green-text">4. if, else, and switch</p>
+    <p>For this, you should know whats if and else for, they are conditionals in least words</p>
+    <h3>IF AND ELSE</h3>
+    <p>These are used to take desicions in base of conditions</p>
+    <p>An example of this could be</p>
+    <pre><code class="language-go">
+if pears == true {
+	println("Pears are best")
+} else if apples == false {
+	println("APPLE SUCKS")
+} else {
+	println("Not true, not false?")
+}
+    </pre></code>
+    <p>This was an example with booleans only for make it easy</p>
+    <p>But, if tou use booleans, you should do this instead</p>
+    <pre><code class="language-go">
+func main() {
+	pear := true
+	apple := false
+
+    if pear { // we only write the variable without == true ONLY IF ITS BOOLEAN
+	    println("PEARS YAY")
+    } else if !apple { // If you want to do a == false, you should put ! before the var to indicate its false
+        println("NOT APPLE SO PEAR YAY")
+    } else {
+		println("not true, not fake")
+	    }
+}
+    </code></pre>
+    <p>EXAMPLE TIME</p>
+    <pre><code class="language-go">
+func main() {
+	cereal := false
+	milk := true
+
+	if cereal && milk{ // We use && to comprobe if both ones are real
+		println("I have cereal and milk")
+    } else if cereal { // Else if to see other cases
+        println("I dont have milk")
+    } else if milk {
+        println("I have only milk")
+    } else { // For anything else. In our case, the only posible case is not having nothing
+        println("im kinda homeless :sob:")
+    }
+        }
+    </code></pre>
+
+    <p>Now, if you understand this, you will understand switch</p>
+    <p>Switch is for when you have TOO MUCH CONDITIONS, so it makes look more clear</p>
+    <pre><code class="language-go">
+func main() {
+    fruit := "pizza"
+
+    switch fruit {
+        	case "apple": // Case works like if
+        		println("Its an apple!")
+        	case "pear": // here case works like else if
+        		println("Its a pear!")
+        	case "orange":
+        		println("Its an orange!")
+        	case "banana":
+        		println("Its a banana!")
+        	default: // default is like else
+        		println("Sir that isnt a fruit ._.")
+        	}
+        }
+    </code></pre>
+
+    <p class="green-text">5. MODULAR CODE</p>
+    <p>So, in this chapter we will see how to have multiple files to modularize the code </p>
+    <p>First, copy this structure to your Golang-Course foulder(the one we are working on)</p>
+    <pre><code class="language-go">
+        ├── go.mod
+        ├── main.go
+        └── operations/
+            └── operations.go
+    </code></pre>
+    <p>On operations.go we gona add basic math functions</p>
+    <pre><code class="language-go">
+package operations
+
+func Add(a int, b int) int { // WAIT, WHY DOES IT HAVE AN INT OUTSIDE THE ()?: that is because thats the value we're gonna get back
+    return a + b // it returns an int
+}
+
+func Multiply(a int, b int) int {
+    return a * b
+}
+    </code></pre>
+    <p>And on main, we're gonna call the function</p>
+    <pre><code class="language-go">
+package main
+
+import "Golang-Course/operations" // WE use the name of our module
+
+func main() {
+    Additions := operations.Add(1, 1)
+    multiplication := operations.Multiply(5, 5)
+    println("1 + 1", Additions)
+    println("5 * 5", multiplication)
+}
+    </pre></code>
+    <p>When you run it, you should see it working fine!</p>
+
+    <p class="green-text">6. STRUCTS</p>
+    <p>For this, you will need to put more attention than usual, ¿why?, this is more harder than everything we saw on this guide. The finall boss is here!</p>
+    <h3>¿What the heck is a struct?</h3>
+    <p>A struct is a structure that helps us to store multiple data under only a name. You can think of it as an "custom datatype" that constains variables you declared</p>
+    <h3>¿HOW TO USE STRUCTS?</h3>
+    <p>Imagine we are making a race videogame, so structs are useful here</p>
+    <p>Alright, here goes the example!</p>
+    <pre><code class="language-go">
+package main
+
+import "fmt" // To use Printf. Structs work fine without fmt, but we need it to print.
+
+// Struct declaration
+type Car struct { // Not a rule, but struct names usually start with an uppercase letter
+        Engine     string
+        Speed      int
+        Model      string
+        Suspension int // Honestly, not sure what suspension exactly means, so this is like "how much it bounces"
+        Year       int
+        Price      int
+}
+
+func main() {
+    var BMWi8 Car                   // Declare a variable BMWi8 of type Car
+    BMWi8.Engine = "1499cc I3 turbo" // I don't know much about cars, this is from Google :P
+    BMWi8.Speed = 250               // 250 KM/H
+    BMWi8.Model = "BMW I8"
+    BMWi8.Suspension = 2            // Made-up value
+    BMWi8.Year = 2014
+    BMWi8.Price = 640000            // 640k, according to Google :P
+
+    fmt.Printf("Your car is a %s with a %s engine and a speed of %d KM/H, has a suspension of %d, was released in %d, and costs %d\n", BMWi8.Model, BMWi8.Engine, BMWi8.Speed, BMWi8.Suspension, BMWi8.Year, BMWi8.Price)
+
+    var Tesla Car // Another example
+	Tesla.Engine = "Electric Motor"
+    Tesla.Speed = 332               // 332 KM/H
+    Tesla.Model = "Tesla Model 3"
+    Tesla.Suspension = 3            // Made-up value again
+    Tesla.Year = 2016
+    Tesla.Price = 500000            // 500k
+
+    fmt.Printf("\nYour car is a %s with a %s engine and a speed of %d KM/H, has a suspension of %d, was released in %d, and costs %d\n", Tesla.Model, Tesla.Engine, Tesla.Speed, Tesla.Suspension, Tesla.Year, Tesla.Price)
+}
+    </code></pre>
+    <p>As you can see, this is the printf of C!</p>
+    
+    <hr>
+    <p style="color: red;">Made with <3 by SrTortugardo for Ruby Dev Portal and for new Golang Users!</p>
+    <p>BTW, I don't know english very well, so if you can, please fex the typos, it would be really cool!</p>
+    <a href="index.html" class="discord-link">Back to Home</a>
+</body>
+</html>
